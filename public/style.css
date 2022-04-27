@@ -395,6 +395,10 @@ footer{
 .para1{
     margin-top: 40px;
 }
+.para1 a{
+    text-decoration: none;
+    color:black
+}
 .p-contact{
     margin-top: 15px;
 }
