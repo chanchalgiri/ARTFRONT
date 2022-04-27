@@ -1,11 +1,10 @@
 const express = require("express");
+const session = require('express-session');
 const app = express();
 const path = require("path");
-const hbs =  require("hbs");
 const port = process.env.PORT || 3000;
 require("./db/connection");
 const Register = require("./models/register");
-const async = require("hbs/lib/async");
 
 
 const static_path = path.join(__dirname,"../public");
@@ -15,6 +14,7 @@ const static_path = path.join(__dirname,"../public");
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(static_path));
+
 // app.set("view engine","hbs");
 // app.set("views",views_path);
 // hbs.registerPartials(partial_path);
@@ -30,7 +30,9 @@ app.get("/login",(req,res)=> {
     res.render("login.html");
 })
 
-
+app.get("/logout",(req,res) => {
+    res.status(200).redirect("login.html");
+})
 app.post("/register",async(req,res) => {
     try {
         const password = req.body.password;
@@ -58,12 +60,12 @@ app.post("/login",async(req,res) => {
     try {
         const email = req.body.email;
         const password = req.body.password;
-        // console.log(`${email} and ${password}`);
         const userEmail = await Register.findOne({email :email});
-        console.log(userEmail.password);
-        console.log(password);
+        // console.log(userEmail.password);
+        // console.log(password);
         if(userEmail.password === password){
-            res.redirect("./index.html");
+            res.redirect("./main.html");
+            // req.flash('message',`Welcome ${email}`);
         }else{
             res.send("INVALID PASSWORD");
         }
