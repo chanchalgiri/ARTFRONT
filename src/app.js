@@ -1,5 +1,4 @@
 const express = require("express");
-const session = require('express-session');
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 3000;
@@ -8,16 +7,11 @@ const Register = require("./models/register");
 
 
 const static_path = path.join(__dirname,"../public");
-// const views_path = path.join(__dirname,"../templates/views");
-// const partial_path = path.join(__dirname,"../templates/partials");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(static_path));
 
-// app.set("view engine","hbs");
-// app.set("views",views_path);
-// hbs.registerPartials(partial_path);
 
 app.get("/",(req,res) =>{
     res.render("index");
@@ -33,6 +27,8 @@ app.get("/login",(req,res)=> {
 app.get("/logout",(req,res) => {
     res.status(200).redirect("login.html");
 })
+
+
 app.post("/register",async(req,res) => {
     try {
         const password = req.body.password;

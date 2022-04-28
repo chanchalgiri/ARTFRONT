@@ -7,10 +7,6 @@ body{
 }
 
 /* HEADER */
-header{
-    /* position: sticky; */
-    /* top: 0px; */
-}
 .container-navbar{
     width: 100vw;
     background-color: #B48855;
@@ -64,6 +60,9 @@ header{
     text-align: center;
     font-size: 3rem;
     text-shadow:1px 1px 1px grey;
+}
+.fa-shopping-cart{
+    font-size: 23px;
 }
 
 /* SECTION  */
@@ -160,6 +159,10 @@ footer{
 }
 .para1{
     margin-top: 40px;
+}
+.para1 a{
+    text-decoration: none;
+    color:black
 }
 .p-contact{
     margin-top: 15px;
